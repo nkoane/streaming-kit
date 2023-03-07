@@ -1,9 +1,13 @@
 import type { RequestHandler } from './$types';
 import { json } from '@sveltejs/kit';
 
-export const GET: RequestHandler = async () => {
+export const GET: RequestHandler = async ({ url }) => {
+    const duration = url.searchParams.get('duration');
+
     try {
-        const streamUrl = 'http://localhost:8000';
+        const streamUrl = duration
+            ? `http://localhost:8000?duration=${duration}`
+            : 'http://localhost:8000';
 
         const response = await fetch(streamUrl, {
             method: 'POST',

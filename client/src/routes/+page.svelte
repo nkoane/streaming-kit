@@ -5,7 +5,9 @@
 
     onMount(() => {
         try {
-            const ev = new EventSource('/api/stream', {
+            const uri = '/api/stream?duration=10';
+
+            const ev = new EventSource(uri, {
                 withCredentials: true
             });
 
@@ -20,8 +22,11 @@
             });
 
             ev.addEventListener('ping', (event) => {
-                const { time, diff, micro } = JSON.parse(event.data);
-                messages = [...messages, `ping: ${time}, micro: ${micro}, diff: ${diff}`];
+                const { time, diff, micro, duration, counter } = JSON.parse(event.data);
+                messages = [
+                    ...messages,
+                    `ping: ${time}, counter: ${counter}, duration: ${duration} , micro: ${micro}, diff: ${diff}`
+                ];
 
                 main?.scrollTo(0, main.scrollHeight);
             });
