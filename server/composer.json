@@ -1,0 +1,20 @@
+{
+    "name": "rebirth/stream",
+    "description": "just a streaming server for testing",
+    "type": "project",
+    "require": {
+        "php": "^8.2"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Rebirth\\Stream\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "lebogang nkoane",
+            "email": "1555646+nkoane@users.noreply.github.com"
+        }
+    ]
+}
